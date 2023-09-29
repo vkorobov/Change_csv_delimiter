@@ -24,27 +24,32 @@ try:
             exit(1)
              
         elif opt in ("-i", "--Input"):
-            print (("Input file (% s)") % (arg))
+            # print (("Input file (% s)") % (arg))
             input_file = arg
-            print(os.path.splitext(input_file)[0])    
+            # print(os.path.splitext(input_file)[0])    
             output_file = os.path.splitext(input_file)[0]+'_out.csv'
-            print(output_file)
+            # print(output_file)
 
         elif opt in ("-o", "--Output"):
-            print (("Outputfile (% s)") % (arg))
+            # print (("Outputfile (% s)") % (arg))
             output_file = arg
 
         elif opt in ("-d", "--Delimiter"):
-            print (("Delimiter (% s)") % (arg))
+            # print (("Delimiter (% s)") % (arg))
             delimiter = arg
 
         elif opt in ("-n", "--NewDelimiter"):
-            print (("New Delimiter (% s)") % (arg))
+            # print (("New Delimiter (% s)") % (arg))
             newDelimiter = arg
              
 except getopt.error as err:
     # output error, and return with an error code
     print (str(err))
+
+
+# Bug: escaped symbols not parsed from arguments.
+# Temporary replace newdelimiter to tab in code.
+newDelimiter = '\t'
 
 with open(input_file,"r") as f_in, open(output_file,"w") as f_out:
     reader = csv.reader(f_in, delimiter=delimiter, quotechar='"')
